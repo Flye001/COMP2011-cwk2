@@ -1,0 +1,41 @@
+{% extends "layout/master_layout.html" %}
+
+{% block content %}
+
+<div class="row text-center">
+    <div class="col-md-6 col-12 mt-2">
+        <h3>Upcoming Shifts</h3>
+        
+        <a class="btn btn-sm btn-success mt-1" href="{{ url_for('manager.create_shift') }}">Create New Shift</a>
+
+        {% for shift in shifts %}
+        <div class="card my-4 mx-auto shift-card">
+            <div class="card-header">
+                <h6 class="mb-0">{{ shift.title }}</h6>
+            </div>
+            <div class="card-body">
+                <p class="mb-0"><b>Start:</b> {{ shift.start_time }}</p>
+                <p class="mb-0"><b>End:</b> {{ shift.end_time }}</p>
+                <p class="mb-1"><b>Workers Required:</b> {{ shift.workers_required }} ({{ shift.workers.__len__() }} assigned)</p>
+                <a class="btn btn-sm btn-primary" href="{{ url_for('manager.manage_shift', id=shift.id) }}">Manage</a>
+            </div>
+        </div>
+        {%endfor%}
+
+        <a class="text-decoration-none" href="{{ url_for('manager.all_shifts') }}"><i>Click here to see more...</i></a>
+
+    </div>
+    <div class="col-md-6 col-12 mt-2">
+        <h3>Currently Unavailable Staff</h3>
+        {% for usr in unavailable_users %}
+        <div class="card mx-auto shift-card text-decoration-none my-2">
+            <div class="card-body">
+                <p class="mb-0">{{ usr[0].name }}</p>
+                <small><i>{{ usr[1] }}</i></small>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+{% endblock %}

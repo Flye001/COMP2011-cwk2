@@ -1,0 +1,24 @@
+{% extends "layout/master_layout.html" %}
+{% from "components/form_elements.html" import render_form_field %}
+
+{% block content %}
+
+<div class="row text-center">
+    <div class="mx-auto col-md-6 col-12 mt-2">
+        <form method="post" class="text-start">
+
+            {{ form.hidden_tag() }}
+
+            {{ render_form_field(form.title) }}
+            {{ render_form_field(form.start_date_time) }}
+            {{ render_form_field(form.end_date_time) }}
+            {{ render_form_field(form.workers_required) }}
+
+            <input class="btn btn-primary w-100 py-2" type="submit" value="Create">
+
+        </form>
+    </div>
+    
+</div>
+
+{% endblock %}

@@ -1,0 +1,39 @@
+<nav class="navbar navbar-expand-lg bg-body-tertiary">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="/">
+            <div class="text-center">
+                <span style="display: block; line-height: 1;">Shift</span>
+                <span style="display: block; font-size: 0.8em;">Manager 3000</span>
+            </div>
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText"
+            aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarText">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+
+                {% if g.role == "user" %}
+                {% include "layout/nav_bar_user.html" %}
+                {% elif g.role == "manager" %}
+                {% include "layout/nav_bar_manager.html" %}
+                {% endif %}
+
+            </ul>
+            <div class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                    aria-expanded="false">
+                    {{ current_user.name }}
+                </a>
+                <ul class="dropdown-menu dropdown-menu-end">
+                    <li><a class="dropdown-item" href="{{ url_for('account_settings') }}">Account Settings</a></li>
+                    <li><a class="dropdown-item" target="_blank" href="https://youtu.be/4-UbHw8eDzM?t=7">Help</a></li>
+                    <li>
+                        <hr class="dropdown-divider">
+                    </li>
+                    <li><a class="dropdown-item" href="{{ url_for('logout') }}">Logout</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</nav>

@@ -1,0 +1,29 @@
+{% extends "layout/master_layout.html" %}
+{% from "components/calendar.html" import render_calendar %}
+
+{% block content %}
+
+<div class="row">
+    <div class="col-lg-6 col-12 mt-2">
+        <h3 class="text-center">Your Schedule</h3>
+
+        {{ render_calendar("listWeek", calendar_events) }}
+    </div>
+
+    <div class="col-lg-6 col-12 text-center mt-2">
+        <h3>Unavailability</h3>
+        <p>Your upcoming unavailability:</p>
+        {% for u in unavailability %}
+        <a class="card mx-auto shift-card text-decoration-none my-2"
+            href="{{ url_for('user.edit_unavailability', id=u.id) }}">
+            <div class="card-body">
+                <b>{{ u.title }}</b>
+                <p class="mb-0"><b>Start: </b>{{ u.start_time }}</p>
+                <p class="mb-0"><b>End: </b>{{ u.end_time }}</p>
+            </div>
+        </a>
+        {% endfor %}
+    </div>
+</div>
+
+{% endblock %}

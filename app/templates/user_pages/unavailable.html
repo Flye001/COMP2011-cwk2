@@ -1,0 +1,26 @@
+{% extends "layout/master_layout.html" %}
+{% from "components/calendar.html" import render_calendar %}
+{% from "components/form_elements.html" import render_form_field %}
+
+{% block content %}
+
+<div class="row text-center">
+    <div class="col-md-6 col-12 mt-2">
+        <h3>Add New Unavailability</h3>
+        <form method="post" class="text-start">
+            {{ form.hidden_tag() }}
+
+            {{ render_form_field(form.title) }}
+            {{ render_form_field(form.start_date_time) }}
+            {{ render_form_field(form.end_date_time) }}
+
+            <input class="btn btn-primary w-100 py-2" type="submit" value="Create">
+        </form>
+    </div>
+    <div class="col-md-6 col-12 mt-2">
+        <h3>Your Upcoming Unavailability</h3>
+        {{ render_calendar("listMonth", unavailable_dates) }}
+    </div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,21 @@
+{% extends "auth_pages/layout.html" %}
+{% from "components/form_elements.html" import render_account_form_field %}
+
+{% block content %}
+
+<h1 class="h3 mb-3 fw-normal text-center">Sign Up</h1>
+
+{{ form.hidden_tag() }}
+
+{{ render_account_form_field(form.email) }}
+{{ render_account_form_field(form.fname) }}
+{{ render_account_form_field(form.lname) }}
+{{ render_account_form_field(form.password) }}
+{{ render_account_form_field(form.account_type) }}
+
+<input class="btn btn-primary w-100 py-2" type="submit" value="Sign Up">
+
+<p class="pt-2"><a href="{{ url_for('login') }}">Login</a> instead.</p>
+
+
+{% endblock %}

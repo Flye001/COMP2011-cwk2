@@ -1,0 +1,13 @@
+{% extends "layout/master_layout.html" %}
+{% from "components/calendar.html" import render_calendar %}
+
+{% block content %}
+
+<div class="row">
+    <div class="col-xl-6 col-lg-8 col-12 mx-auto mt-2">        
+        {{ render_calendar("dayGridMonth", calendar_events) }}
+    </div>
+
+</div>
+
+{% endblock %}

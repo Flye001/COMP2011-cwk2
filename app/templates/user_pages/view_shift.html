@@ -1,0 +1,29 @@
+{% extends "layout/master_layout.html" %}
+
+{% block content %}
+
+<div class="row text-center">
+    <div class="col-md-6 col-12 mt-2">
+        <h3>Details</h3>
+        <div class="card mx-auto my-2 shift-card">
+            <h5 class="card-header">{{ shift.title }}</h5>
+            <div class="card-body">
+                <p class="mb-0"><b>Start:</b> {{ shift.start_time }}</p>
+                <p class="mb-0"><b>End:</b> {{ shift.end_time }}</p>
+                <p class="mb-1"><b>Workers Required:</b> {{ shift.workers_required }}</p>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6 col-12 mt-2">
+        <h3>Assigned Staff</h3>
+        {% for usr in shift.workers %}
+        <div class="card mx-auto shift-card text-decoration-none">
+            <div class="card-body">
+                {{ usr.name }}
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+{% endblock %}

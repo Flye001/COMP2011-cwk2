@@ -1,0 +1,24 @@
+{% extends "layout/master_layout.html" %}
+{% from "components/form_elements.html" import render_form_field %}
+
+{% block content %}
+
+<div class="row">
+    <div class="col-md-6 col-12 mx-auto mt-2">
+
+        <form method="post" class="text-start">
+
+            {{ form.hidden_tag() }}
+
+            {{ render_form_field(form.email) }}
+            {{ render_form_field(form.fname) }}
+            {{ render_form_field(form.lname) }}
+            {{ render_form_field(form.password) }}
+
+            <input type="submit" class="btn btn-success w-100" value="Update">
+
+        </form>
+    </div>
+</div>
+
+{% endblock %}

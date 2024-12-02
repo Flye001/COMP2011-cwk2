@@ -1,0 +1,51 @@
+{% extends "layout/master_layout.html" %}
+
+{% block content %}
+
+<div class="row text-center">
+    <div class="col-12 mt-2">
+        <h3>Shift Information</h3>
+        <div class="card mx-auto my-2 shift-card">
+            <h5 class="card-header">{{ shift.title }}</h5>
+            <div class="card-body">
+                <p class="mb-0"><b>Start:</b> {{ shift.start_time }}</p>
+                <p class="mb-0"><b>End:</b> {{ shift.end_time }}</p>
+                <p class="mb-1"><b>Workers Required:</b> {{ shift.workers_required }}</p>
+                <div class="d-flex justify-content-evenly">
+                    <a class="btn btn-sm btn-warning" style="width: 125px"
+                        href="{{ url_for('manager.edit_shift', id=shift.id) }}">Edit</a>
+                    <a class="btn btn-sm btn-danger" style="width: 125px"
+                        href="{{ url_for('manager.delete_shift', id=shift.id) }}">Delete</a>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row text-center">
+    <div class="col-md-6 col-12 mt-2">
+        <h3>Assigned Workers ({{ shift.workers.__len__() }}/{{ shift.workers_required }})</h3>
+        {% for usr in shift.workers %}
+        <a class="card mx-auto shift-card text-decoration-none"
+            href="{{ url_for('manager.assign_staff_to_shift', shift_id=shift.id, user_id=usr.id) }}">
+            <div class="card-body">
+                {{ usr.name }}
+            </div>
+        </a>
+        {% endfor %}
+    </div>
+    <div class="col-md-6 col-12 mt-2">
+        <h3>Available Staff</h3>
+        {% for usr in users %}
+        <a class="card mx-auto shift-card text-decoration-none"
+            href="{{ url_for('manager.assign_staff_to_shift', shift_id=shift.id, user_id=usr.id) }}">
+            <div class="card-body">
+                {{ usr.name }}
+            </div>
+        </a>
+        {% endfor %}
+    </div>
+</div>
+
+{% endblock %}

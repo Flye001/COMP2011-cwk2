@@ -1,0 +1,26 @@
+{% macro render_account_form_field(field) %}
+<div class="form-floating my-2">
+    {{ field(class_="form-control") }}
+    {{ field.label }}
+
+    {% for error in field.errors %}
+    <div class="alert alert-danger" role="alert">
+        [{{ error }}]
+    </div>
+    {% endfor %}
+</div>
+{% endmacro %}
+
+
+{% macro render_form_field(field) %}
+<div class="mb-3">
+    {{ field.label(class_="form-label") }}
+    {{ field(class_="form-control") }}
+
+    {% for error in field.errors %}
+    <div class="alert alert-danger" role="alert">
+        [{{ error }}]
+    </div>
+    {% endfor %}
+</div>
+{% endmacro %}
