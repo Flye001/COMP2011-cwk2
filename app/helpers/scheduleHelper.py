@@ -6,13 +6,11 @@ from app.models import Shift, Unavailability, User
 class ScheduleHelper():
     @staticmethod
     def is_clash(u :Unavailability, s :Shift) -> bool:
-        # DeMorgan's Law!!
         if u.end_time >= s.start_time and s.end_time >= u.start_time:
                 return True
         
     @staticmethod
     def is_clash_time(start :datetime, end :datetime, s :Shift) -> bool:
-        # DeMorgan's Law!!
         if end >= s.start_time and s.end_time >= start:
                 return True
 
@@ -21,6 +19,9 @@ class ScheduleHelper():
         for u in user.unavailability:
             if ScheduleHelper.is_clash(u, shift):
                  return False
+        for s in user.shifts:
+             if ScheduleHelper.is_clash_time(s.start_time, s.end_time, shift):
+                  return False
         return True
     
     @staticmethod
