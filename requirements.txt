@@ -1,12 +1,7 @@
 alembic==1.13.3
 bcrypt==4.2.1
 blinker==1.8.2
-click==8.1.7
-command-not-found==0.3
 cryptography==3.4.8
-dbus-python==1.2.18
-distro==1.7.0
-distro-info===1.1build1
 dnspython==2.7.0
 email_validator==2.2.0
 Flask==3.0.3
